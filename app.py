@@ -6,7 +6,7 @@ A REST API wrapper for GitHub Models to access GPT through GitHub's AI model mar
 import logging
 from flask import Flask, request, jsonify
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 from functools import wraps
 from config import config
 
@@ -60,7 +60,7 @@ def health_check():
     return jsonify({
         'status': 'healthy',
         'service': 'GitHub Models GPT API',
-        'timestamp': datetime.utcnow().isoformat(),
+        'timestamp': datetime.now(timezone.utc).isoformat(),
         'version': '1.0.0'
     })
 
